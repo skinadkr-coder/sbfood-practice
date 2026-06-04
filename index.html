@@ -11,196 +11,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <style>
-    :root {
-      --color-primary: #6b1210;
-      --color-text: #292829;
-      --color-muted: #888;
-      --max-width: 1200px;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: "Noto Sans KR", "Malgun Gothic", sans-serif;
-      color: var(--color-text);
-      background: #fff;
-    }
-    a { color: inherit; text-decoration: none; }
-    ul { list-style: none; }
-    .inner { max-width: var(--max-width); margin: 0 auto; padding: 0 20px; }
-    .practice-badge {
-      background: #fff3cd;
-      color: #856404;
-      text-align: center;
-      padding: 8px;
-      font-size: 13px;
-      border-bottom: 1px solid #ffeeba;
-    }
-    #siteHeader { border-bottom: 1px solid #eee; }
-    .main-row { padding: 20px 0; }
-    .main-row-inner {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .logo a { font-size: 1.4rem; font-weight: 700; color: var(--color-primary); }
-    .logo small { display: block; font-size: 11px; font-weight: 400; color: var(--color-muted); }
-    .header-search { flex: 1; min-width: 200px; max-width: 420px; }
-    .header-search form { display: flex; border: 1px solid #ddd; border-radius: 4px; overflow: hidden; }
-    .header-search input { flex: 1; border: none; padding: 10px 12px; font-size: 14px; }
-    .header-search button { border: none; background: var(--color-primary); color: #fff; padding: 0 14px; cursor: pointer; }
-    .header-utils { font-size: 13px; color: #555; }
-    .header-utils a:hover { color: var(--color-primary); }
-    .util-sep { margin: 0 6px; color: #ccc; }
-    .cat-row { background: var(--color-primary); color: #fff; }
-    .cat-row-inner {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 12px 20px;
-      max-width: var(--max-width);
-      margin: 0 auto;
-    }
-    .btn-allcat {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(0,0,0,0.15);
-      border: none;
-      color: #fff;
-      padding: 8px 14px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 14px;
-    }
-    .nav-1depth ul { display: flex; gap: 24px; }
-    .nav-1depth a { font-weight: 500; font-size: 15px; }
-    .cat-icons { margin-left: auto; display: flex; gap: 20px; font-size: 13px; }
-    .cat-icons a { display: flex; align-items: center; gap: 4px; }
-    .section-product-main { padding: 60px 0; }
-    .main-section-title { margin-bottom: 30px; }
-    .main-section-title .txt01 {
-      font-family: Poppins, sans-serif;
-      font-size: 13px;
-      color: var(--color-muted);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      display: block;
-      margin-bottom: 6px;
-    }
-    .main-section-title .txt02 { font-size: 22px; font-weight: 700; }
-    .product-list.grid4 {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-    .product-card { border: 1px solid #eee; background: #fff; }
-    .product-card .thumbnail {
-      aspect-ratio: 1;
-      background: #f0ebe9;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #999;
-      font-size: 12px;
-    }
-    .product-card .description { padding: 14px; }
-    .product-name { display: block; font-size: 14px; margin-bottom: 8px; font-weight: 500; }
-    .price-original { display: block; font-size: 13px; color: #aaa; text-decoration: line-through; }
-    .price-sale { font-size: 16px; font-weight: 700; color: var(--color-primary); }
-    .btn-more {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      margin: 30px auto 0;
-      padding: 12px 32px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-      color: #555;
-      width: fit-content;
-    }
-    .btn-more:hover { background: var(--color-text); color: #fff; border-color: var(--color-text); }
-    .section-banner .banner-placeholder {
-      background: linear-gradient(90deg, #8b2a28, #6b1210);
-      color: #fff;
-      text-align: center;
-      padding: 80px 20px;
-      font-size: 18px;
-    }
-    .section-video { padding: 80px 0; background: #f8f8f8; text-align: center; }
-    .video-desc {
-      font-size: 14px;
-      color: #555;
-      line-height: 1.8;
-      margin-bottom: 32px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .video-wrap {
-      max-width: 860px;
-      margin: 0 auto;
-      aspect-ratio: 16/9;
-      background: #ddd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #666;
-      font-size: 14px;
-    }
-    .section-gallery { padding: 60px 0; }
-    .section-gallery > .inner > p { text-align: center; font-size: 14px; color: #555; margin-bottom: 30px; }
-    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .gallery-item {
-      position: relative;
-      aspect-ratio: 4/5;
-      background: #e8e4e2;
-      display: flex;
-      align-items: flex-end;
-    }
-    .gallery-caption {
-      width: 100%;
-      padding: 20px 16px;
-      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
-      color: #fff;
-      font-size: 15px;
-    }
-    .gallery-more { text-align: center; margin-top: 24px; }
-    .gallery-more a { font-size: 14px; color: #555; border-bottom: 1px solid #ccc; padding-bottom: 2px; }
-    footer {
-      background: #2a2a2a;
-      color: #bbb;
-      padding: 40px 0 24px;
-      font-size: 13px;
-      line-height: 1.7;
-    }
-    .footer-inner {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 32px;
-      margin-bottom: 24px;
-    }
-    .footer-logo { font-weight: 700; color: #fff; font-size: 18px; }
-    .footer-util ul { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
-    .footer-util a:hover { color: #fff; }
-    .footer-util strong { color: #fff; }
-    .cs-title { display: block; color: #fff; font-weight: 500; margin-top: 12px; margin-bottom: 4px; }
-    .cs-phone { font-size: 20px; color: #fff; font-weight: 700; }
-    .footer-info .field { color: #888; margin-right: 8px; }
-    .footer-copyright {
-      text-align: center;
-      padding-top: 20px;
-      border-top: 1px solid #444;
-      font-size: 12px;
-      color: #888;
-    }
-    @media (max-width: 900px) {
-      .product-list.grid4 { grid-template-columns: repeat(2, 1fr); }
-      .gallery-grid { grid-template-columns: 1fr; }
-      .footer-inner { grid-template-columns: 1fr; }
-    }
-  </style>
+  <!-- 쇼핑몰 인테리어 디자인 (index.html과 같은 폴더) -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -223,7 +35,7 @@
             <form action="#" method="get">
               <input type="text" name="keyword" placeholder="상품명을 검색해 보세요" aria-label="검색">
               <button type="button" aria-label="검색">
-                <span class="material-icons" style="font-size:20px;vertical-align:middle">search</span>
+                <span class="material-icons icon-search">search</span>
               </button>
             </form>
           </div>
@@ -338,7 +150,7 @@
 
     <section class="section-gallery">
       <div class="inner">
-        <div class="main-section-title" style="text-align:center">
+        <div class="main-section-title main-section-title--center">
           <span class="txt01">OUR STORY</span>
           <span class="txt02">매일 신선한 김치를 만듭니다</span>
         </div>
