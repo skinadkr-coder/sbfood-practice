@@ -8,11 +8,11 @@
    1. 디자인 토큰 (색·간격·그림자)
    ------------------------------------------------------------ */
 :root {
-  /* 브랜드 컬러 */
-  --color-primary: #6b1210;
-  --color-primary-dark: #4a0c0a;
-  --color-primary-light: #8b2a28;
-  --color-accent: #c9a962;
+  /* 브랜드 컬러 (네이비 블루 계열) */
+  --color-primary: #1a365d;
+  --color-primary-dark: #0f2744;
+  --color-primary-light: #2c5282;
+  --color-accent: #4299e1;
 
   /* 텍스트·배경 */
   --color-text: #292829;
@@ -29,9 +29,9 @@
   --radius-lg: 20px;
 
   /* 그림자 */
-  --shadow-sm: 0 2px 8px rgba(43, 24, 20, 0.06);
-  --shadow-md: 0 8px 24px rgba(43, 24, 20, 0.1);
-  --shadow-lg: 0 16px 40px rgba(43, 24, 20, 0.12);
+  --shadow-sm: 0 2px 8px rgba(26, 54, 93, 0.06);
+  --shadow-md: 0 8px 24px rgba(26, 54, 93, 0.1);
+  --shadow-lg: 0 16px 40px rgba(26, 54, 93, 0.12);
 
   /* 애니메이션 */
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
@@ -166,7 +166,7 @@ img {
 
 .header-search form:focus-within {
   border-color: var(--color-primary-light);
-  box-shadow: 0 0 0 3px rgba(107, 18, 16, 0.08);
+  box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.08);
   background: var(--color-white);
 }
 
@@ -390,7 +390,7 @@ img {
   background: linear-gradient(
     to bottom,
     transparent 60%,
-    rgba(107, 18, 16, 0.03)
+    rgba(26, 54, 93, 0.03)
   );
 }
 
@@ -488,7 +488,7 @@ img {
   height: 200%;
   background: radial-gradient(
     circle,
-    rgba(201, 169, 98, 0.15) 0%,
+    rgba(66, 153, 225, 0.15) 0%,
     transparent 70%
   );
   pointer-events: none;
@@ -570,7 +570,7 @@ img {
 .gallery-caption {
   width: 100%;
   padding: 28px 20px;
-  background: linear-gradient(to top, rgba(30, 15, 12, 0.75), transparent);
+  background: linear-gradient(to top, rgba(15, 39, 68, 0.75), transparent);
   color: var(--color-white);
   font-size: 15px;
   font-weight: 500;
@@ -751,4 +751,22 @@ footer {
     padding: 64px 20px;
     font-size: 16px;
   }
+}
+/* ------------------------------------------------------------
+   13. :hover 연습 — 포기김치 메뉴 (마우스 올릴 때만 빨간색)
+   ------------------------------------------------------------ */
+
+/* 평소: 다른 카테고리 메뉴와 동일한 흰색 */
+.nav-1depth a.point-red {
+  color: inherit;
+  transition: color var(--duration) var(--ease);
+}
+
+/* 마우스를 올렸을 때만 빨간색 */
+.nav-1depth a.point-red:hover {
+  color: #ff6b6b;
+}
+/* 마이페이지만 검정색 (연습) */
+.cat-icons a.mypage-black {
+  color: #000000;
 }
