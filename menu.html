@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>승빈푸드 원형 메뉴판 연습</title>
+    <style>
+        /* 화면 한가운데에 메뉴판을 배치합니다 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+            margin: 0;
+        }
+
+        /* 메뉴판을 감싸는 전체 원형 틀 */
+        .circle-menu-box {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+
+        /* 한가운데에 있는 진짜 클릭 버튼 */
+        .center-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(0deg);
+            width: 90px;
+            height: 90px;
+            background-color: #ff5722;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.5);
+            z-index: 10;
+            user-select: none;
+            transition: transform 0.4s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* 메뉴판 열렸을 때 중심 버튼 변화 */
+        .center-button.open {
+            transform: translate(-50%, -50%) rotate(45deg);
+            background-color: #e64a19;
+            box-shadow: 0 6px 20px rgba(255, 87, 34, 0.7);
+        }
+
+        /* 원형 안에 배치될 자잘한 메뉴들의 기본 위치 */
+        .menu-item {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-color: #ffffff;
+            border: 2px solid #ff5722;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            cursor: pointer;
+            /* 초기 상태: 가운데 위치, 투명, 스케일 0 */
+            opacity: 0;
+            pointer-events: none;
+            transition:
+                transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+                opacity   0.35s ease;
+        }
+
+        /* 호버 효과 */
+        .menu-item:hover {
+            background-color: #fff3e0;
+            transform: translate(var(--tx), var(--ty)) scale(1.12) !important;
+            box-shadow: 0 4px 14px rgba(255, 87, 34, 0.35);
+        }
+
+        /* 수학적인 각도를 계산해서 원형으로 둥글게 배치합니다 (시계방향) */
+        /* 각 아이템의 최종 위치 */
+        .item1 { top: 10px;  left: 120px; --tx: 0px;    --ty: -110px; } /* 12시 */
+        .item2 { top: 120px; right: 10px; --tx: 110px;  --ty: 0px;   } /* 3시  */
+        .item3 { bottom: 10px; left: 120px; --tx: 0px;  --ty: 110px; } /* 6시  */
+        .item4 { top: 120px; left: 10px;  --tx: -110px; --ty: 0px;   } /* 9시  */
+
+        /* 닫힌 상태: 각각 가운데로 수렴 */
+        .item1 { transform: translate(0px,    110px)  scale(0.3); }
+        .item2 { transform: translate(-110px, 0px)    scale(0.3); }
+        .item3 { transform: translate(0px,    -110px) scale(0.3); }
+        .item4 { transform: translate(110px,  0px)    scale(0.3); }
+
+        /* 열린 상태: 제자리로 펼쳐짐 */
+        .menu-item.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .item1.open { transform: translate(0,    0) scale(1); transition-delay: 0.00s; }
+        .item2.open { transform: translate(0,    0) scale(1); transition-delay: 0.06s; }
+        .item3.open { transform: translate(0,    0) scale(1); transition-delay: 0.12s; }
+        .item4.open { transform: translate(0,    0) scale(1); transition-delay: 0.18s; }
+
+        /* 배경 오버레이 (선택 클릭 시 닫힘) */
+        .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+        }
+        .overlay.open { display: block; }
+    </style>
+</head>
+<body>
+
+    <!-- 배경 클릭 시 메뉴 닫기용 오버레이 -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- 원형 메뉴판 구조 시작 -->
+    <div class="circle-menu-box" style="z-index: 2; position: relative;">
+        
+        <!-- 한가운데 중심 버튼 -->
+        <div class="center-button" id="centerBtn">메뉴판</div>
+        
+        <!-- 주변에 둘러싸인 카테고리 방들 -->
+        <div class="menu-item item1">🥬 수산물 </div>
+        <div class="menu-item item2">🛋 가구</div>
+        <div class="menu-item item3">🐟 김치치</div>
+        <div class="menu-item item4">👕 의류</div>
+        
+    </div>
+
+    <script>
+        const centerBtn  = document.getElementById('centerBtn');
+        const overlay    = document.getElementById('overlay');
+        const menuItems  = document.querySelectorAll('.menu-item');
+
+        let isOpen = false;
+
+        function openMenu() {
+            isOpen = true;
+            centerBtn.classList.add('open');
+            overlay.classList.add('open');
+            menuItems.forEach(item => item.classList.add('open'));
+        }
+
+        function closeMenu() {
+            isOpen = false;
+            centerBtn.classList.remove('open');
+            overlay.classList.remove('open');
+            menuItems.forEach(item => item.classList.remove('open'));
+        }
+
+        centerBtn.addEventListener('click', () => {
+            isOpen ? closeMenu() : openMenu();
+        });
+
+        overlay.addEventListener('click', closeMenu);
+    </script>
+
+</body>
+</html>

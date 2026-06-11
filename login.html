@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인 - 김치광장</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans KR', sans-serif; background: #f5f5f5; color: #333; }
+    .header { background: #fff; padding: 16px 40px; border-bottom: 1px solid #ddd; }
+    .header .logo { font-size: 22px; font-weight: 700; color: #111; text-decoration: none; display: inline-block; }
+
+    .container {
+      max-width: 420px;
+      margin: 60px auto;
+      background: #fff;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    h1 { font-size: 24px; font-weight: 700; text-align: center; margin-bottom: 32px; }
+
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 13px; color: #555; margin-bottom: 6px; }
+    .form-group input {
+      width: 100%; padding: 12px 14px;
+      border: 1px solid #ddd; border-radius: 8px;
+      font-size: 15px; font-family: 'Noto Sans KR', sans-serif;
+    }
+    .form-group input:focus { outline: none; border-color: #222; }
+
+    .btn-login {
+      width: 100%; padding: 14px;
+      background: #222; color: #fff;
+      font-size: 16px; font-weight: 700;
+      border: none; border-radius: 8px;
+      cursor: pointer; margin-top: 8px;
+    }
+    .btn-login:hover { background: #e63312; }
+
+    .links {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #888;
+    }
+    .links a { color: #333; text-decoration: none; margin: 0 8px; }
+    .links a:hover { text-decoration: underline; }
+
+    .divider { border: none; border-top: 1px solid #eee; margin: 20px 0; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <a href="index.html" class="logo">김치광장</a>
+  </div>
+
+  <div class="container">
+    <h1>로그인</h1>
+
+    <div class="form-group">
+      <label>아이디 (이메일)</label>
+      <input type="email" id="email" placeholder="이메일을 입력하세요">
+    </div>
+    <div class="form-group">
+      <label>비밀번호</label>
+      <input type="password" id="password" placeholder="비밀번호를 입력하세요">
+    </div>
+
+    <button class="btn-login" onclick="doLogin()">로그인</button>
+
+    <hr class="divider">
+
+    <div class="links">
+      <a href="signup.html">회원가입</a>
+      <span>|</span>
+      <a href="#">아이디 찾기</a>
+      <span>|</span>
+      <a href="#">비밀번호 찾기</a>
+    </div>
+  </div>
+
+  <script>
+    function doLogin() {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      if (!email) { alert('이메일을 입력해주세요.'); return; }
+      if (!password) { alert('비밀번호를 입력해주세요.'); return; }
+      // 가상 로그인 처리
+      localStorage.setItem('loggedIn', 'true');
+      localStorage.setItem('userName', email.split('@')[0]);
+      alert('로그인 되었습니다!');
+      location.href = 'mypage.html';
+    }
+  </script>
+
+</body>
+</html>

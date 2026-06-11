@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>주문서 - 김치광장</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans KR', sans-serif; background: #f5f5f5; color: #333; }
+
+    .header {
+      background: #fff;
+      padding: 16px 40px;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .header .logo { font-size: 22px; font-weight: 700; color: #111; }
+
+    .step-bar {
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      padding: 16px 0;
+      text-align: center;
+    }
+    .step-bar .steps { display: inline-flex; gap: 0; }
+    .step {
+      padding: 8px 32px;
+      font-size: 14px;
+      color: #aaa;
+      position: relative;
+    }
+    .step.active { color: #e63312; font-weight: 700; }
+    .step::after {
+      content: '›';
+      position: absolute;
+      right: -6px;
+      color: #ddd;
+    }
+    .step:last-child::after { display: none; }
+
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .section {
+      background: #fff;
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    }
+    .section h2 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #222;
+    }
+
+    .form-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    .form-row label {
+      width: 90px;
+      font-size: 14px;
+      color: #555;
+      flex-shrink: 0;
+    }
+    .form-row input, .form-row select, .form-row textarea {
+      flex: 1;
+      padding: 10px 14px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+    .form-row textarea { height: 70px; resize: none; }
+    .form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+      outline: none;
+      border-color: #222;
+    }
+
+    .product-summary {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .product-summary img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .product-summary .info .name { font-weight: 700; font-size: 15px; }
+    .product-summary .info .price { color: #e63312; font-weight: 700; font-size: 16px; margin-top: 4px; }
+    .product-summary .info .qty { color: #888; font-size: 13px; margin-top: 2px; }
+
+    .payment-options { display: flex; gap: 12px; flex-wrap: wrap; }
+    .payment-btn {
+      padding: 10px 20px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      background: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .payment-btn.selected {
+      border-color: #222;
+      background: #222;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .price-summary { font-size: 14px; }
+    .price-summary .row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .price-summary .row.total {
+      font-size: 18px;
+      font-weight: 700;
+      color: #e63312;
+      border-bottom: none;
+      margin-top: 8px;
+    }
+
+    .btn-order {
+      width: 100%;
+      padding: 18px;
+      background: #e63312;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s;
+    }
+    .btn-order:hover { background: #c52a0e; }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #666;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <span class="logo">김치광장</span>
+  </div>
+
+  <div class="step-bar">
+    <div class="steps">
+      <div class="step active">① 주문서 작성</div>
+      <div class="step">② 결제</div>
+      <div class="step">③ 주문완료</div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <a href="product.html" class="back-link">← 상품으로 돌아가기</a>
+
+    <!-- 주문 상품 -->
+    <div class="section">
+      <h2>주문 상품</h2>
+      <div class="product-summary">
+        <img src="https://img.freepik.com/free-photo/kimchi_1147-72.jpg" alt="포기김치 3kg">
+        <div class="info">
+          <div class="name">포기김치 3kg (국내산 100%)</div>
+          <div class="price">23,000원</div>
+          <div class="qty">수량: 1개</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 배송지 정보 -->
+    <div class="section">
+      <h2>배송지 정보</h2>
+      <div class="form-row">
+        <label>받는 분 *</label>
+        <input type="text" id="name" placeholder="이름을 입력하세요">
+      </div>
+      <div class="form-row">
+        <label>연락처 *</label>
+        <input type="tel" id="phone" placeholder="010-0000-0000">
+      </div>
+      <div class="form-row">
+        <label>주소 *</label>
+        <input type="text" id="address" placeholder="주소를 입력하세요">
+      </div>
+      <div class="form-row">
+        <label>배송 메모</label>
+        <textarea id="memo" placeholder="예) 문 앞에 놓아주세요"></textarea>
+      </div>
+    </div>
+
+    <!-- 결제 방법 -->
+    <div class="section">
+      <h2>결제 방법</h2>
+      <div class="payment-options">
+        <button class="payment-btn selected" onclick="selectPayment(this)">무통장 입금</button>
+        <button class="payment-btn" onclick="selectPayment(this)">신용카드</button>
+        <button class="payment-btn" onclick="selectPayment(this)">카카오페이</button>
+        <button class="payment-btn" onclick="selectPayment(this)">네이버페이</button>
+      </div>
+    </div>
+
+    <!-- 최종 금액 -->
+    <div class="section">
+      <h2>결제 금액</h2>
+      <div class="price-summary">
+        <div class="row"><span>상품금액</span><span>23,000원</span></div>
+        <div class="row"><span>배송비</span><span>무료</span></div>
+        <div class="row"><span>할인금액</span><span style="color:#e63312">-6,000원</span></div>
+        <div class="row total"><span>최종 결제금액</span><span>23,000원</span></div>
+      </div>
+      <button class="btn-order" onclick="submitOrder()">주문하기</button>
+    </div>
+
+  </div>
+
+  <script>
+    function selectPayment(btn) {
+      document.querySelectorAll('.payment-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    }
+
+    function submitOrder() {
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const address = document.getElementById('address').value.trim();
+
+      if (!name) { alert('받는 분 이름을 입력해주세요.'); return; }
+      if (!phone) { alert('연락처를 입력해주세요.'); return; }
+      if (!address) { alert('주소를 입력해주세요.'); return; }
+
+      location.href = 'order_complete.html';
+    }
+  </script>
+
+</body>
+</html>

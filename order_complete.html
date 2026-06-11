@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>주문완료 - 김치광장</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans KR', sans-serif; background: #f5f5f5; color: #333; }
+
+    .header {
+      background: #fff;
+      padding: 16px 40px;
+      border-bottom: 1px solid #ddd;
+    }
+    .header .logo { font-size: 22px; font-weight: 700; color: #111; }
+
+    .step-bar {
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      padding: 16px 0;
+      text-align: center;
+    }
+    .step-bar .steps { display: inline-flex; }
+    .step {
+      padding: 8px 32px;
+      font-size: 14px;
+      color: #aaa;
+      position: relative;
+    }
+    .step.active { color: #e63312; font-weight: 700; }
+    .step::after { content: '›'; position: absolute; right: -6px; color: #ddd; }
+    .step:last-child::after { display: none; }
+
+    .container {
+      max-width: 600px;
+      margin: 60px auto;
+      text-align: center;
+    }
+
+    .check-icon {
+      width: 80px;
+      height: 80px;
+      background: #e63312;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 40px;
+      color: #fff;
+    }
+
+    h1 { font-size: 26px; font-weight: 700; margin-bottom: 12px; }
+    .sub { font-size: 15px; color: #666; margin-bottom: 40px; line-height: 1.6; }
+
+    .order-box {
+      background: #fff;
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      text-align: left;
+      margin-bottom: 28px;
+    }
+    .order-box h2 { font-size: 16px; font-weight: 700; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid #222; }
+
+    .order-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 14px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .order-row:last-child { border-bottom: none; }
+    .order-row span:first-child { color: #888; }
+    .order-row span:last-child { font-weight: 500; }
+    .order-row.total span { font-size: 17px; font-weight: 700; color: #e63312; }
+
+    .btn-wrap { display: flex; gap: 12px; }
+    .btn-home {
+      flex: 1; padding: 16px;
+      background: #fff; border: 2px solid #222;
+      font-size: 15px; font-weight: 700;
+      border-radius: 8px; cursor: pointer;
+      text-decoration: none; color: #222;
+      display: block; text-align: center;
+    }
+    .btn-home:hover { background: #f5f5f5; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <span class="logo">김치광장</span>
+  </div>
+
+  <div class="step-bar">
+    <div class="steps">
+      <div class="step">① 주문서 작성</div>
+      <div class="step">② 결제</div>
+      <div class="step active">③ 주문완료</div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="check-icon">✓</div>
+    <h1>주문이 완료되었습니다!</h1>
+    <p class="sub">
+      주문해 주셔서 감사합니다.<br>
+      입금 확인 후 1~2일 이내 냉장 직배송으로 출발합니다.
+    </p>
+
+    <div class="order-box">
+      <h2>주문 내역</h2>
+      <div class="order-row">
+        <span>주문번호</span>
+        <span id="orderNum"></span>
+      </div>
+      <div class="order-row">
+        <span>상품명</span>
+        <span>포기김치 3kg</span>
+      </div>
+      <div class="order-row">
+        <span>수량</span>
+        <span>1개</span>
+      </div>
+      <div class="order-row">
+        <span>배송</span>
+        <span>무료 냉장 직배송</span>
+      </div>
+      <div class="order-row">
+        <span>결제 방법</span>
+        <span>무통장 입금</span>
+      </div>
+      <div class="order-row total">
+        <span>결제 금액</span>
+        <span>23,000원</span>
+      </div>
+    </div>
+
+    <div class="order-box">
+      <h2>입금 안내</h2>
+      <div class="order-row">
+        <span>은행</span>
+        <span>농협</span>
+      </div>
+      <div class="order-row">
+        <span>계좌번호</span>
+        <span>778837-04-008424</span>
+      </div>
+      <div class="order-row">
+        <span>예금주</span>
+        <span>김치광장</span>
+      </div>
+      <div class="order-row">
+        <span>입금기한</span>
+        <span>주문 후 24시간 이내</span>
+      </div>
+    </div>
+
+    <div class="btn-wrap">
+      <a href="index.html" class="btn-home">쇼핑 계속하기</a>
+    </div>
+
+  </div>
+
+  <script>
+    // 랜덤 주문번호 생성
+    const orderNum = 'SB' + Date.now().toString().slice(-8);
+    document.getElementById('orderNum').textContent = orderNum;
+  </script>
+
+</body>
+</html>
